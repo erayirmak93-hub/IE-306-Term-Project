@@ -1,0 +1,23 @@
+# configs/offline.yaml
+# Settings for the offline-RL experiments (naive DQN / CQL / BC).
+
+dataset_path: "team_data.npz"
+
+seed: 0
+
+# --- network ---
+hidden: 256
+
+# --- training ---
+n_updates: 20000        # gradient updates over the static dataset
+batch_size: 128
+target_sync: 200        # sync target net every N updates
+log_every: 200          # write mean_q every N updates (this captures the blow-up)
+
+# --- optimization ---
+lr: 0.0003
+gamma: 0.99
+
+# --- CQL only ---
+cql_alpha: 10.0          # conservatism weight. 0 -> behaves like naive DQN.
+                        # sweep this (0, 0.1, 1, 5) for the ablation.

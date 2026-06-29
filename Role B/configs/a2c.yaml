@@ -1,0 +1,5 @@
+architecture: 256 -> LayerNorm -> 128 (No Grid)
+gae_lambda: 0.95
+gamma: 0.99
+learning_rate: 0.001
+num_episodes: 2000

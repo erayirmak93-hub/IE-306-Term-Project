@@ -1,0 +1,28 @@
+# configs/idqn.yaml
+# Every number your experiment uses lives here, NOT inside the code.
+
+env_id: "DroneDispatchMA-v0"
+
+# --- ablation switches ---
+param_sharing: true      # true = one shared net for all drones; false = per-drone nets
+use_agent_id: true       # true = append one-hot drone id (symmetry breaking)
+
+# --- network ---
+hidden: 128
+
+# --- training length ---
+total_steps: 40000       # enough to see learning; raise for final runs if time allows
+learning_starts: 2000    # fill the buffer a bit before training
+train_every: 4           # gradient step every 4 env steps (~3x faster than 1)
+target_sync: 1000        # copy online->target every N steps
+
+# --- optimization ---
+lr: 0.0005
+gamma: 0.99
+batch_size: 64
+buffer_size: 100000
+
+# --- exploration (linear epsilon decay) ---
+eps_start: 1.0
+eps_end: 0.05
+eps_decay_steps: 20000
